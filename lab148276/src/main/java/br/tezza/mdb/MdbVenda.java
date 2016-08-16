@@ -28,7 +28,7 @@ public class MdbVenda implements MessageListener {
 				msg = (ObjectMessage) rcvMessage;
 				Venda venda = (Venda) msg.getObject();
 			} else {
-				LOGGER.warning("Message of Wrong type: " + rcvMessage);
+				LOGGER.warning("Message of Wrong type MdbVenda: " + rcvMessage);
 			}
 		} catch (JMSException e) {
 			throw new RuntimeException(e);

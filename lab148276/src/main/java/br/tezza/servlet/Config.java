@@ -31,8 +31,12 @@ import javax.servlet.http.HttpServletResponse;
 						)
 		})
 
-@WebServlet("/Config")
+@WebServlet("/config")
 public class Config extends HttpServlet {
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 6928990017251760934L;
 
 	@Inject
 	private JMSContext context;
@@ -43,38 +47,24 @@ public class Config extends HttpServlet {
 	@Resource(lookup = "java:/topic/TopicVenda")
 	private Topic topicVenda;
 
-	private static final long serialVersionUID = 1L;
-
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		resp.setContentType("text/html");
 		PrintWriter out = resp.getWriter();
-		out.write("<h1>Quickstart: Example demonstrates the use of <strong>JMS 2.0</strong> and <strong>EJB 3.2 Message-Driven Bean</strong> in WildFly 8.</h1>");
+		out.write("<h1>Quickstart: Trabalho 3º Bimestre.</h1>");
 		try {
-
-			// topicVenda
 			boolean useTopic = req.getParameterMap().keySet().contains("topicVenda");
-			final Destination destinationTopic = useTopic ? topicVenda : queuePedido;
+			final Destination destination = useTopic ? topicVenda : queuePedido;
 
-			out.write("Enviando mensagem para: " + destinationTopic);
+			out.write("Enviando mensagem para: " + destination);
 
-			String textTopic = " foi enviada: ";
-			context.createProducer().send(destinationTopic, textTopic);
-			out.write("Message: " + textTopic + "</br>");
+			String text = " foi enviada: ";
+			context.createProducer().send(destination, text);
+			out.write("</br> Message: " + text + "</br>");
 
-			out.write("Fim do processo");
+			out.write("Fim do processo" + "</br>");
 
-			// queuePedido
-			boolean useQueue = req.getParameterMap().keySet().contains("queuePedido");
-			final Destination destinationQueue = useQueue ? topicVenda : queuePedido;
-
-			out.write("Enviando mensagem para: " + destinationQueue);
-
-			String textQueue = " foi enviada: ";
-			context.createProducer().send(destinationTopic, textQueue);
-			out.write("Message: " + textQueue + "</br>");
-
-			out.write("Fim do processo");
 
 		} finally {
 			if (out != null) {
