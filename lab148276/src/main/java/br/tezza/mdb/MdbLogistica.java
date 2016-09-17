@@ -19,17 +19,17 @@ public class MdbLogistica  implements MessageListener {
 
 	@Override
 	public void onMessage(Message rcvMessage) {
-		TextMessage msg = null;
+		ObjectMessage msg = null;
 		try {
-			if (rcvMessage instanceof TextMessage) {
-				msg = (TextMessage) rcvMessage;
+			if (rcvMessage instanceof ObjectMessage) {
+				msg = (ObjectMessage) rcvMessage;
 
-				LOGGER.info("Mensagem da fila: " + msg);
-				LOGGER.info("Processando");
+				LOGGER.info("MDB Logistica esta realizando a entrega.");
+				LOGGER.info("Processando...");
 
 				Thread.sleep(30000);
 
-				LOGGER.info("A entrega foi despachada");
+				LOGGER.info("Entrega finalizada.");
 
 			} else {
 				LOGGER.warning("Message of Wrong type: " + rcvMessage);

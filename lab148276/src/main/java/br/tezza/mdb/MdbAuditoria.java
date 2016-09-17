@@ -9,6 +9,7 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
 
+import br.tezza.pojo.PojoVenda;
 import br.tezza.servlet.Venda;
 
 @MessageDriven(name = "MdbAuditoria", activationConfig = {
@@ -26,7 +27,9 @@ public class MdbAuditoria implements MessageListener {
 		try {
 			if (rcvMessage instanceof ObjectMessage) {
 				msg = (ObjectMessage) rcvMessage;
-				Venda venda = (Venda) msg.getObject();
+				PojoVenda venda = (PojoVenda) msg.getObject();
+
+				System.out.println("MDBAuditoria: venda concluida!");
 			} else {
 				LOGGER.warning("Message of Wrong type MdbAuditoria: " + rcvMessage);
 			}

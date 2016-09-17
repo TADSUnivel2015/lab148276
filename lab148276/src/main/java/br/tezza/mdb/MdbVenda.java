@@ -9,6 +9,7 @@ import javax.jms.ObjectMessage;
 import javax.management.RuntimeErrorException;
 import java.util.logging.Logger;
 
+import br.tezza.pojo.PojoVenda;
 import br.tezza.servlet.Venda;
 
 @MessageDriven(name = "MdbVenda", activationConfig = {
@@ -26,7 +27,9 @@ public class MdbVenda implements MessageListener {
 		try {
 			if (rcvMessage instanceof ObjectMessage) {
 				msg = (ObjectMessage) rcvMessage;
-				Venda venda = (Venda) msg.getObject();
+				PojoVenda venda = (PojoVenda) msg.getObject();
+
+				System.out.println("MDBVenda: venda concluida!");
 			} else {
 				LOGGER.warning("Message of Wrong type MdbVenda: " + rcvMessage);
 			}
