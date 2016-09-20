@@ -48,7 +48,7 @@ public class Venda extends HttpServlet{
 
 		resp.setContentType("text/html");
 		PrintWriter out = resp.getWriter();
-		out.write("Processo de venda foi encaminhado.");
+		out.write("Processo de venda");
 	}
 
 

@@ -38,7 +38,7 @@ public class Entrega extends HttpServlet{
 
 		resp.setContentType("text/html");
 		PrintWriter out = resp.getWriter();
-		out.write("Processo de entrega foi despachado.");
+		out.write("Entrega despachada.");
 	}
 
 }

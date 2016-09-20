@@ -28,7 +28,7 @@ public class EntregaJaxWS extends HttpServlet{
 	@WebMethod(operationName = "enviarEntrega")
 	@WebResult(name="resultadoEntrega")
 	@Override
-	protected void doDelete(@WebParam(name="paramReq")HttpServletRequest req, @WebParam(name="paramResp")HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(@WebParam(name="paramReq")HttpServletRequest req, @WebParam(name="paramResp")HttpServletResponse resp) throws ServletException, IOException {
 
 		System.out.println("Processo de entrega foi iniciado...");
 
