@@ -1,0 +1,1 @@
+wsimport -p br.tezza.wsclientVenda -keep -d src_ws http://localhost:8081/lab148276/VendaJaxWS?wsdl

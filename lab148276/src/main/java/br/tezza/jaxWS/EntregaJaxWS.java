@@ -18,7 +18,7 @@ import br.tezza.ejb.ProcessEntrega;
 import br.tezza.pojo.PojoEntrega;
 
 @WebService
-public class EntregaJaxWS extends HttpServlet{
+public class EntregaJaxWS {
 
 	private static final long serialVersionUID = 1L;
 
@@ -27,8 +27,7 @@ public class EntregaJaxWS extends HttpServlet{
 
 	@WebMethod(operationName = "enviarEntrega")
 	@WebResult(name="resultadoEntrega")
-	@Override
-	protected void doGet(@WebParam(name="paramReq")HttpServletRequest req, @WebParam(name="paramResp")HttpServletResponse resp) throws ServletException, IOException {
+	public PojoEntrega enviarEntrega() throws ServletException, IOException {
 
 		System.out.println("Processo de entrega foi iniciado...");
 
@@ -40,9 +39,7 @@ public class EntregaJaxWS extends HttpServlet{
 		// Envia o objeto
 		processEntrega.processarEntrega(entrega);
 
-		resp.setContentType("text/html");
-		PrintWriter out = resp.getWriter();
-		out.write("Processo de entrega foi despachado.");
+		return entrega;
 	}
 
 }

@@ -20,15 +20,15 @@ import br.tezza.ejb.ProcessVenda;
 import br.tezza.pojo.PojoVenda;
 
 @WebService
-public class VendaJaxWS extends HttpServlet{
+public class VendaJaxWS{
 
+	private static final long serialVersionUID = 1L;
 	@EJB
 	ProcessVenda processVenda; // Faz a injeção na variável.
 
 	@WebMethod(operationName = "enviarVenda")
 	@WebResult(name="resultadoVenda")
-	@Override
-	protected void doGet(@WebParam(name="paramReq")HttpServletRequest req, @WebParam(name="paramResp")HttpServletResponse resp) throws ServletException, IOException {
+	public PojoVenda enviarVenda() throws ServletException, IOException {
 
 		System.out.println("Processo de venda foi iniciado...");
 
@@ -46,9 +46,7 @@ public class VendaJaxWS extends HttpServlet{
 		// Envia o objeto
 		processVenda.processarVenda(venda);
 
-		resp.setContentType("text/html");
-		PrintWriter out = resp.getWriter();
-		out.write("Processo de venda foi encaminhado.");
+		return venda;
 	}
 
 
